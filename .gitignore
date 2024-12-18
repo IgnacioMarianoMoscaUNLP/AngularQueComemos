@@ -79,6 +79,9 @@ web_modules/
 .env.production.local
 .env.local
 
+# Angular CLI specific
+.angular/
+
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 .parcel-cache
@@ -94,7 +97,6 @@ dist
 # Gatsby files
 .cache/
 # Comment in the public line in if your project uses Gatsby and not Next.js
-# https://nextjs.org/blog/next-9-1#public-directory-support
 # public
 
 # vuepress build output
@@ -128,3 +130,19 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# IDEs
+.idea/
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Angular build output
+dist/
+.tmp/
+.out/
+
+# Build artifacts
+*.tgz
