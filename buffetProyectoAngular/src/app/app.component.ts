@@ -10,17 +10,29 @@ import { ComidaComponent } from './components/comida/comida.component';
 import { MenuCreationComponent } from './components/menu-creation/menu-creation.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponentComponent } from "./components/home-component/home-component.component";
-
+import { LoginService } from './Services/login.service';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 //agregar LoginComponent
 @Component({
   selector: 'app-root',
   standalone:true,
   imports: [RouterOutlet, RegisterComponent, CommonModule, RegisterComponent,
     ComidaComponent, MenuCreationComponent, NavbarComponent,
-    FooterComponent, HomeComponentComponent, HomeComponentComponent, LoginComponent],
+    FooterComponent, HomeComponentComponent, HomeComponentComponent, LoginComponent,HomeComponentComponent],
+    providers: [
+      LoginService,
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: JwtInterceptor,  // Registra el interceptor
+        multi: true,  // Permite tener múltiples interceptores
+      },
+    ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'buffetProyectoAngular';
+  isLoggedIn = true; // Cambia esto dependiendo del estado de sesión
+  userType: 'admin' | 'user' = 'user'; // Cambia esto dependiendo del tipo de usuario
 }

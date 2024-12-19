@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators'; // Asegúrate de importar tap
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,11 @@ export class LoginService {
         'Content-Type': 'application/json',
       }),
     };
-    return this.http.post(this.apiUrl, data, httpOptions); // Cambiado DataTransfer por data
+    return this.http.post(this.apiUrl, data, httpOptions).pipe(
+      tap((response: any) => {
+        // Guardar el token en localStorage o sessionStorage
+        localStorage.setItem('token', response.token);  // Asegurándote de que la respuesta tenga 'token'
+      })
+    );
   }
 }

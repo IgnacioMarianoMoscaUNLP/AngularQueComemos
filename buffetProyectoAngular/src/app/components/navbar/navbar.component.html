@@ -1,14 +1,12 @@
-<mat-toolbar>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>My App</span>
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
-    </button>
-  </mat-toolbar>
+<mat-toolbar color="primary">
+  <span>Mi Aplicación</span>
   
+  <span class="spacer"></span>
+
+  <button *ngIf="!isLoggedIn" mat-button>Iniciar sesión</button>
+  <button *ngIf="!isLoggedIn" mat-button>Registrarse</button>
+  
+  <button *ngIf="isLoggedIn && userType === 'user'" mat-button>Mi Menú</button>
+  <button *ngIf="isLoggedIn && userType === 'admin'" mat-button>Crear Menú</button>
+  <button *ngIf="isLoggedIn" mat-button (click)="logout()">Cerrar sesión</button>
+</mat-toolbar>
